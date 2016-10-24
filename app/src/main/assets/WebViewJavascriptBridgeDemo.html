@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>WebViewJavascriptBridgeDemo</title>
+    </head>
+    <body>
+        <p>
+            <div id="show">
+            </div>
+        </p>
+
+        <p>
+            <input type="button" value="callNative" onclick="callNative();"/>
+        </p>
+
+        <script>
+            function bridgeLog(logContent) {
+                document.getElementById("show").innerHTML = logContent;
+            }
+
+            function setupWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+                if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+                window.WVJBCallbacks = [callback];
+                var WVJBIframe = document.createElement('iframe');
+                WVJBIframe.style.display = 'none';
+                WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                document.documentElement.appendChild(WVJBIframe);
+                setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+            }
+
+            setupWebViewJavascriptBridge(function(bridge) {
+
+                /* Initialize your app here */
+
+                bridge.registerHandler('callJs', function(data, responseCallback) {
+                    bridgeLog(data);
+                    responseCallback('callback:');
+                })
+            })
+
+            function callNative(){
+               window.WebViewJavascriptBridge.callHandler('callNative', {'key':'value'}, function responseCallback(responseData) {
+                    bridgeLog(responseData);
+                })
+            }
+
+        </script>
+
+    </body>
+</html>
