@@ -219,8 +219,6 @@ public final class WJBridgeProvider implements WebViewJavascriptBridge {
         this.mDefaultHandler = null;
         this.mResponseCallbacks.clear();
         this.mResponseCallbacks = null;
-        this.mStartupMessages.clear();
-        this.mStartupMessages = null;
         this.mMessageHandlers.clear();
         this.mMessageHandlers = null;
         this.mWebView = null;
