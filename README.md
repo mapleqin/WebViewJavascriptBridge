@@ -51,7 +51,7 @@ init
         <dependency>
             <groupId>net.soulwolf.common</groupId>
             <artifactId>WebViewJavascriptBridge</artifactId>
-            <version>0.0.2</version>
+            <version>0.0.3</version>
             <type>pom</type>
         </dependency>
     	
@@ -72,7 +72,7 @@ init
        }
 	}
     android-WebView	
-        compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.2'
+        compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.3'
         
     QQBrowser X5 core
         compile 'net.soulwolf.common:WebViewJavascriptBridge-qqx5tbs:0.0.1'
