@@ -38,7 +38,7 @@ init
                 callbacks.onCallback("callNative response data" + System.currentTimeMillis());
             }
         });
-
+        
     webView.callHandler("callJs", "{\"callJsData\":\"data\"}", new WJCallbacks() {
             @Override
             public void onCallback(String data) {
@@ -47,21 +47,21 @@ init
         });
 ```
 ## Maven
-android-WebView
-	 <dependency>
-  	    <groupId>net.soulwolf.common</groupId>
-  	    <artifactId>WebViewJavascriptBridge</artifactId>
-  	    <version>0.0.2</version>
-  	    <type>pom</type>
-	 </dependency>
-	
-QQBrowser X5 core
-	 <dependency>
-      <groupId>net.soulwolf.common</groupId>
-      <artifactId>WebViewJavascriptBridge-qqx5tbs</artifactId>
-      <version>0.0.1</version>
-      <type>pom</type>
-   </dependency> 
+    android-WebView
+        <dependency>
+            <groupId>net.soulwolf.common</groupId>
+            <artifactId>WebViewJavascriptBridge</artifactId>
+            <version>0.0.2</version>
+            <type>pom</type>
+        </dependency>
+    	
+    QQBrowser X5 core
+        <dependency>
+            <groupId>net.soulwolf.common</groupId>
+            <artifactId>WebViewJavascriptBridge-qqx5tbs</artifactId>
+            <version>0.0.1</version>
+            <type>pom</type>
+        </dependency> 
 ## Gradle
 	allprojects {
        repositories {
@@ -71,11 +71,11 @@ QQBrowser X5 core
           }
        }
 	}
-android-WebView	
-    compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.2'
-    
-QQBrowser X5 core
-    compile 'net.soulwolf.common:WebViewJavascriptBridge-qqx5tbs:0.0.1'
+    android-WebView	
+        compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.2'
+        
+    QQBrowser X5 core
+        compile 'net.soulwolf.common:WebViewJavascriptBridge-qqx5tbs:0.0.1'
 
 ## Developed by
  Ching Soulwolf - <a href='javascript:'>Ching.Soulwolf@gmail.com</a>
