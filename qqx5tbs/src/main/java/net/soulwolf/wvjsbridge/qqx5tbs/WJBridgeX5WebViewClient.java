@@ -14,22 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.soulwolf.wvjsbridge;
+package net.soulwolf.wvjsbridge.qqx5tbs;
 
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
+
+import net.soulwolf.wvjsbridge.WJBridgeProvider;
 
 /**
  * author: EwenQin
  * since : 2016/10/23 下午12:59.
  */
-public class WJBridgeWebViewClient extends WebViewClient {
+public class WJBridgeX5WebViewClient extends WebViewClient {
 
     private static final String TAG = "WJBridgeWebViewClient";
 
     private WJBridgeProvider mProvider;
 
-    public WJBridgeWebViewClient(WJBridgeProvider provider){
+    public WJBridgeX5WebViewClient(WJBridgeProvider provider){
         this.mProvider = provider;
     }
 

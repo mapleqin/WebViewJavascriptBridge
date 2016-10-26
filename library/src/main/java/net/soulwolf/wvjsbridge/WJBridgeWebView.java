@@ -16,7 +16,7 @@ import java.util.List;
  * author: EwenQin
  * since : 2016/10/24 下午4:14.
  */
-public class WJBridgeWebView extends WebView implements WebViewJavascriptBridge{
+public class WJBridgeWebView extends WebView implements WebViewJavascriptBridge,WJWebLoader{
 
     private static final String TAG = "WJBridgeWebView";
 

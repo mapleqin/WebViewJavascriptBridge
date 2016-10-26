@@ -19,7 +19,6 @@ package net.soulwolf.wvjsbridge;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.webkit.WebView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -34,13 +33,13 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public final class WJBridgeProvider implements WebViewJavascriptBridge {
 
-    public static WJBridgeProvider newInstance(WebView webView) {
-        return new WJBridgeProvider(WJBridgeUtils.checkNoNull(webView, "WebView not NULL!"));
+    public static WJBridgeProvider newInstance(WJWebLoader webLoader) {
+        return new WJBridgeProvider(WJBridgeUtils.checkNoNull(webLoader, "WJWebLoader not NULL!"));
     }
 
     public static final String SCRIPT_NAME = "WebViewJavascriptBridge.js";
 
-    private WeakReference<WebView> mWebView;
+    private WeakReference<WJWebLoader> mWebLoader;
 
     private final AtomicLong mUniqueId = new AtomicLong();
 
@@ -51,14 +50,14 @@ public final class WJBridgeProvider implements WebViewJavascriptBridge {
 
     private List<WJMessage> mStartupMessages = new ArrayList<>();
 
-    private WJBridgeProvider(@NonNull WebView webView) {
-        this.mWebView = new WeakReference<WebView>(webView);
+    private WJBridgeProvider(@NonNull WJWebLoader webLoader) {
+        this.mWebLoader = new WeakReference<WJWebLoader>(webLoader);
     }
 
-    public boolean shouldOverrideUrlLoading(WebView view, String url){
+    public boolean shouldOverrideUrlLoading(WJWebLoader loader, String url){
         url = WJBridgeUtils.decodeUrl(url);
         if(url.startsWith(WJBridgeUtils.WJ_BRIDGE_LOADED)){
-            WJBridgeUtils.webViewLoadLocalJs(view,SCRIPT_NAME);
+            WJBridgeUtils.webViewLoadLocalJs(loader,SCRIPT_NAME);
             return true;
         }else if(url.startsWith(WJBridgeUtils.WJ_RETURN_DATA)){
             this.handlerReturnData(url);
@@ -114,8 +113,8 @@ public final class WJBridgeProvider implements WebViewJavascriptBridge {
     }
 
     private void _loadUrl(String url) {
-        if (mWebView.get() != null) {
-            this.mWebView.get().loadUrl(url);
+        if (mWebLoader.get() != null) {
+            this.mWebLoader.get().loadUrl(url);
         }
     }
 
@@ -215,12 +214,16 @@ public final class WJBridgeProvider implements WebViewJavascriptBridge {
         }
     }
 
+    public WJWebLoader getLoader(){
+        return mWebLoader.get();
+    }
+
     public void destroy(){
         this.mDefaultHandler = null;
         this.mResponseCallbacks.clear();
         this.mResponseCallbacks = null;
         this.mMessageHandlers.clear();
         this.mMessageHandlers = null;
-        this.mWebView = null;
+        this.mWebLoader = null;
     }
 }

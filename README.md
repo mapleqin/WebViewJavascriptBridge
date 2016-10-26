@@ -5,7 +5,7 @@ This is a communication between Android applications and Web Javascript to estab
 
 ## Sample
 init
-```
+```java
 
             function setupWebViewJavascriptBridge(callback) {
                 if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
@@ -29,13 +29,39 @@ init
             })
 ````
 
+
+```java
+    webView.registerHandler("callNative", new WJBridgeHandler() {
+            @Override
+            public void handler(String data, WJCallbacks callbacks) {
+                Toast.makeText(getApplicationContext(),data,Toast.LENGTH_SHORT).show();
+                callbacks.onCallback("callNative response data" + System.currentTimeMillis());
+            }
+        });
+
+    webView.callHandler("callJs", "{\"callJsData\":\"data\"}", new WJCallbacks() {
+            @Override
+            public void onCallback(String data) {
+                Toast.makeText(getApplicationContext(),"callJs callback" + data,Toast.LENGTH_SHORT).show();
+            }
+        });
+```
 ## Maven
-	<dependency>
+android-WebView
+	 <dependency>
   	    <groupId>net.soulwolf.common</groupId>
-		<url>https://dl.bintray.com/soulwolf/maven</url>
   	    <artifactId>WebViewJavascriptBridge</artifactId>
   	    <version>0.0.2</version>
-	</dependency>
+  	    <type>pom</type>
+	 </dependency>
+	
+QQBrowser X5 core
+	 <dependency>
+      <groupId>net.soulwolf.common</groupId>
+      <artifactId>WebViewJavascriptBridge-qqx5tbs</artifactId>
+      <version>0.0.1</version>
+      <type>pom</type>
+   </dependency> 
 ## Gradle
 	allprojects {
        repositories {
@@ -45,8 +71,11 @@ init
           }
        }
 	}
-	
-	compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.2'
+android-WebView	
+    compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.2'
+    
+QQBrowser X5 core
+    compile 'net.soulwolf.common:WebViewJavascriptBridge-qqx5tbs:0.0.1'
 
 ## Developed by
  Ching Soulwolf - <a href='javascript:'>Ching.Soulwolf@gmail.com</a>

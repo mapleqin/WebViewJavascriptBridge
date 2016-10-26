@@ -103,16 +103,16 @@ public final class WJBridgeUtils {
         }
     }
 
-    public static void webViewLoadJs(WebView view, String url) {
+    public static void webViewLoadJs(WJWebLoader view, String url) {
         String js = "var newscript = document.createElement(\"script\");";
         js += "newscript.src=\"" + url + "\";";
         js += "document.scripts[0].parentNode.insertBefore(newscript,document.scripts[0]);";
         view.loadUrl("javascript:" + js);
     }
 
-    public static void webViewLoadLocalJs(WebView view, String path) {
-        String jsContent = assetFile2Str(view.getContext(), path);
-        view.loadUrl("javascript:" + jsContent);
+    public static void webViewLoadLocalJs(WJWebLoader loader, String path) {
+        String jsContent = assetFile2Str(loader.getContext(), path);
+        loader.loadUrl("javascript:" + jsContent);
     }
 
     public static String assetFile2Str(Context context, String urlStr) {

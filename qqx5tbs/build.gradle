@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "net.soulwolf.wvjsbridge.sample"
         minSdkVersion 9
         targetSdkVersion 24
         versionCode 1
@@ -20,8 +19,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
-    compile project(':qqx5tbs')
+    compile files('build/jar/tbs_sdk_thirdapp_v2.4.0.1073_36840_sharewithdownload_obfs_20161011_194834.jar')
 }
+apply from : '../gradle-mvn-push.gradle'
