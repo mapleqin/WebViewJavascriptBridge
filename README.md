@@ -1,4 +1,4 @@
-# WebViewJavascriptBridge
+# WebViewJavascriptBridge[ ![Download](https://api.bintray.com/packages/soulwolf/maven/WebViewJavascriptBridge/images/download.svg) ](https://bintray.com/soulwolf/maven/WebViewJavascriptBridge/_latestVersion)
 This is a communication between Android applications and Web Javascript to establish a bridge between the call support each other
 
 <a href="https://github.com/marcuswestin/WebViewJavascriptBridge">WebViewJavascriptBridge</a> for Android Implement!
@@ -51,7 +51,7 @@ init
         <dependency>
             <groupId>net.soulwolf.common</groupId>
             <artifactId>WebViewJavascriptBridge</artifactId>
-            <version>0.0.3</version>
+            <version>[version]</version>
             <type>pom</type>
         </dependency>
     	
@@ -59,7 +59,7 @@ init
         <dependency>
             <groupId>net.soulwolf.common</groupId>
             <artifactId>WebViewJavascriptBridge-qqx5tbs</artifactId>
-            <version>0.0.1</version>
+            <version>[version]</version>
             <type>pom</type>
         </dependency> 
 ## Gradle
@@ -72,17 +72,16 @@ init
        }
 	}
     android-WebView	
-        compile 'net.soulwolf.common:WebViewJavascriptBridge:0.0.3'
+        compile 'net.soulwolf.common:WebViewJavascriptBridge:[version]'
         
     QQBrowser X5 core
-        compile 'net.soulwolf.common:WebViewJavascriptBridge-qqx5tbs:0.0.1'
+        compile 'net.soulwolf.common:WebViewJavascriptBridge-qqx5tbs:[version]'
 
 ## Developed by
- Ching Soulwolf - <a href='javascript:'>Ching.Soulwolf@gmail.com</a>
+ Amphiaraus - <a href='javascript:'>amphiarause@gmail.com</a>
 
 
 ## License
-	Copyright 2015 Soulwolf Ching
 	Copyright 2015 The Android Open Source Project for WebViewJavascriptBridge
 	
 	Licensed under the Apache License, Version 2.0 (the "License");

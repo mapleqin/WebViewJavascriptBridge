@@ -1,1 +1,1 @@
-include ':app', ':library', ':qqx5tbs'
+include ':app', ':library', ':qqx5tbs', ':tbslib'
