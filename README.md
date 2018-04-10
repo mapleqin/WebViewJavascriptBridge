@@ -21,16 +21,21 @@ function setupWebViewJavascriptBridge(callback) {
 setupWebViewJavascriptBridge(function(bridge) {
 
     /* Initialize your app here */
-
     bridge.registerHandler('callJs', function(data, responseCallback) {
         console.log(data);
         responseCallback('callback:');
+    })
+
+    bridge.callHandler('callNative', "{\"callNativeData\":\"data\"}",function(data){
+        console.log(data);
     })
 })
 ````
 
 
 ```java
+WJBridgeWebView webVuew = new WJBridgeWebView(context);
+
 webView.registerHandler("callNative", new WJBridgeHandler() {
         @Override
         public void handler(String data, WJCallbacks callbacks) {
