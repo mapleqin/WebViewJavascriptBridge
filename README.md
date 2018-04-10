@@ -1,10 +1,9 @@
-# WebViewJavascriptBridge[ ![Download](https://api.bintray.com/packages/soulwolf/maven/jsbridge/images/download.svg) ](https://bintray.com/soulwolf/maven/jsbridge/_latestVersion)
+# WebViewJavascriptBridge
 This is a communication between Android applications and Web Javascript to establish a bridge between the call support each other
 
 <a href="https://github.com/marcuswestin/WebViewJavascriptBridge">WebViewJavascriptBridge</a> for Android Implement!
 
-## Sample
-init
+## JavaScript
 ```javascript
 function setupWebViewJavascriptBridge(callback) {
     if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
@@ -16,7 +15,9 @@ function setupWebViewJavascriptBridge(callback) {
     document.documentElement.appendChild(WVJBIframe);
     setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
 }
-
+```
+## Sample
+```javascript
 setupWebViewJavascriptBridge(function(bridge) {
 
     /* Initialize your app here */
@@ -45,10 +46,10 @@ webView.callHandler("callJs", "{\"callJsData\":\"data\"}", new WJCallbacks() {
         }
     });
 ```
-## Gradle
+## Gradle[ ![Download](https://api.bintray.com/packages/soulwolf/maven/jsbridge/images/download.svg) ](https://bintray.com/soulwolf/maven/jsbridge/_latestVersion)
     compile 'org.amphiaraus.webkit:jsbridge:[version]'
         
-## QQBrowser X5 core
+## QQBrowser X5 core[ ![Download](https://api.bintray.com/packages/soulwolf/maven/jsbridge/images/download.svg) ](https://bintray.com/soulwolf/maven/jsbridge-qqx5tbs/_latestVersion)
     compile 'org.amphiaraus.webkit:jsbridge-qqx5tbs:[version]'
 
 ## Developed by
