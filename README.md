@@ -5,45 +5,45 @@ This is a communication between Android applications and Web Javascript to estab
 
 ## Sample
 init
-```java
-    function setupWebViewJavascriptBridge(callback) {
-        if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
-        if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
-        window.WVJBCallbacks = [callback];
-        var WVJBIframe = document.createElement('iframe');
-        WVJBIframe.style.display = 'none';
-        WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-        document.documentElement.appendChild(WVJBIframe);
-        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-    }
+```javascript
+function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+}
 
-    setupWebViewJavascriptBridge(function(bridge) {
+setupWebViewJavascriptBridge(function(bridge) {
 
-        /* Initialize your app here */
+    /* Initialize your app here */
 
-        bridge.registerHandler('callJs', function(data, responseCallback) {
-            console.log(data);
-            responseCallback('callback:');
-        })
+    bridge.registerHandler('callJs', function(data, responseCallback) {
+        console.log(data);
+        responseCallback('callback:');
     })
+})
 ````
 
 
 ```java
-    webView.registerHandler("callNative", new WJBridgeHandler() {
-            @Override
-            public void handler(String data, WJCallbacks callbacks) {
-                Toast.makeText(getApplicationContext(),data,Toast.LENGTH_SHORT).show();
-                callbacks.onCallback("callNative response data" + System.currentTimeMillis());
-            }
-        });
-        
-    webView.callHandler("callJs", "{\"callJsData\":\"data\"}", new WJCallbacks() {
-            @Override
-            public void onCallback(String data) {
-                Toast.makeText(getApplicationContext(),"callJs callback" + data,Toast.LENGTH_SHORT).show();
-            }
-        });
+webView.registerHandler("callNative", new WJBridgeHandler() {
+        @Override
+        public void handler(String data, WJCallbacks callbacks) {
+            Toast.makeText(getApplicationContext(),data,Toast.LENGTH_SHORT).show();
+            callbacks.onCallback("callNative response data" + System.currentTimeMillis());
+        }
+    });
+
+webView.callHandler("callJs", "{\"callJsData\":\"data\"}", new WJCallbacks() {
+        @Override
+        public void onCallback(String data) {
+            Toast.makeText(getApplicationContext(),"callJs callback" + data,Toast.LENGTH_SHORT).show();
+        }
+    });
 ```
 ## Gradle
     compile 'org.amphiaraus.webkit:jsbridge:[version]'
