@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "net.soulwolf.wvjsbridge.sample"
@@ -20,9 +20,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile project(':library')
-    compile project(':qqx5tbs')
-    compile project(':tbslib')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation project(':library')
+    implementation project(':qqx5tbs')
+    implementation project(':tbslib')
 }

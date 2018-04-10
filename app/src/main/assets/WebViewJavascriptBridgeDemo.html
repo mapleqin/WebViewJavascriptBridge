@@ -10,10 +10,28 @@
         </p>
 
         <p>
-            <input type="button" value="callNative" onclick="callNative();"/>
+            <input type="button" value="getTimeFromNative" onclick="callNative();"/>
         </p>
 
         <script>
+            Date.prototype.format = function(fmt) {
+              var o = {
+                "M+" : this.getMonth()+1,                 //月份
+                "d+" : this.getDate(),                    //日
+                "h+" : this.getHours(),                   //小时
+                "m+" : this.getMinutes(),                 //分
+                "s+" : this.getSeconds(),                 //秒
+                "q+" : Math.floor((this.getMonth()+3)/3), //季度
+                "S"  : this.getMilliseconds()             //毫秒
+              };
+              if(/(y+)/.test(fmt))
+                fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+              for(var k in o)
+                if(new RegExp("("+ k +")").test(fmt))
+              fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+              return fmt;
+            }
+
             function bridgeLog(logContent) {
                 document.getElementById("show").innerHTML = logContent;
             }
@@ -32,15 +50,15 @@
             setupWebViewJavascriptBridge(function(bridge) {
 
                 /* Initialize your app here */
-
-                bridge.registerHandler('callJs', function(data, responseCallback) {
-                    bridgeLog(data);
-                    responseCallback('callback:');
+                bridge.registerHandler('getTimeFromJs', function(data, responseCallback) {
+                    var args = JSON.parse(data);
+                    bridgeLog('NativeArgs ' + data);
+                    responseCallback(new Date().format(args['format']));
                 })
             })
 
             function callNative(){
-               window.WebViewJavascriptBridge.callHandler('callNative', {'key':'value'}, function responseCallback(responseData) {
+               window.WebViewJavascriptBridge.callHandler('getTimeFromNative', {'format':'yyyy-MM-dd HH:mm:ss'}, function responseCallback(responseData) {
                     bridgeLog(responseData);
                 })
             }

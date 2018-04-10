@@ -18,8 +18,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:text="callHandler JS Toast"
-        android:onClick="callHandlerJSToast"
+        android:text="getTimeFromJs"
+        android:textAllCaps="false"
+        android:onClick="getTimeFromJs"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>
